@@ -4,7 +4,8 @@
     {
         public static void Main(string[] args)
         {
-            var ecs = new ECS(28);
+            // Constructor injection
+            var ecs = new ECS(28, new TempSensor_imp(), new Heater_imp());
 
             ecs.Regulate();
 

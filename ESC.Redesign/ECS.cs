@@ -6,11 +6,12 @@
         private readonly TempSensor _tempSensor;
         private readonly Heater _heater;
 
-        public ECS(int thr)
+        // Constructor injection
+        public ECS(int thr, TempSensor thisTempSensor, Heater thisHeater)
         {
             SetThreshold(thr);
-            _tempSensor = new TempSensor_imp();
-            _heater = new Heater_imp();
+            _tempSensor = thisTempSensor;
+            _heater = thisHeater;
         }
 
         public void Regulate()
