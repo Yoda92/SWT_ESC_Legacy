@@ -1,0 +1,36 @@
+@startuml
+skinparam linetype ortho
+
+frame "cd ESC.Legacy" {
+
+ESC "1" --> "1" Heater
+ESC "1" --> "1" TempSensor
+
+class ESC {
+    - int _threshold;
+    - readonly TempSensor _tempSensor;
+    - readonly Heater _heater;
+
+    + ESC(int);
+    + void Regular();
+    + void SetThreshold(int);
+    + int GetThreshold();
+    + int GetCurTemp();
+    + bool RunSelfTest();
+
+}
+
+class Heater {
+    + void TurnOn();
+    + void TurnOff();
+    + bool RunSelfTest();
+}
+
+class TempSensor {
+    - Random gen;
+    + int GetTemp();
+    + bool RunSelfTest();
+}
+
+}
+@enduml

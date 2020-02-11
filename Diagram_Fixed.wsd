@@ -1,0 +1,64 @@
+@startuml
+skinparam linetype ortho
+
+frame "cd ESC.Legacy" {
+
+ESC "1" -- "1" Heater
+ESC "1" -- "1" TempSensor
+Heater "1" *-- "1" Heater_imp
+TempSensor "1" *-- "1" TempSensor_imp
+Heater "1" *-- "1" Heater_test
+TempSensor "1" *-- "1" TempSensor_test
+
+class ESC {
+    - int _threshold;
+    - readonly TempSensor _tempSensor;
+    - readonly Heater _heater;
+
+    + ESC(int);
+    + void Regular();
+    + void SetThreshold(int);
+    + int GetThreshold();
+    + int GetCurTemp();
+    + bool RunSelfTest();
+
+}
+
+interface Heater {
+    + void TurnOn();
+    + void TurnOff();
+    + bool RunSelfTest();
+}
+
+interface TempSensor {
+    - Random gen;
+    + int GetTemp();
+    + bool RunSelfTest();
+}
+
+class Heater_imp {
+    + void TurnOn();
+    + void TurnOff();
+    + bool RunSelfTest();
+}
+
+class Heater_test {
+    + void TurnOn();
+    + void TurnOff();
+    + bool RunSelfTest();
+}
+
+class TempSensor_imp {
+    - Random gen;
+    + int GetTemp();
+    + bool RunSelfTest();
+}
+
+class TempSensor_test {
+    - Random gen;
+    + int GetTemp();
+    + bool RunSelfTest();
+}
+
+}
+@enduml
