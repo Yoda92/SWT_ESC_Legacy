@@ -4,28 +4,75 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ECS.Redesign;
+using NUnit.Framework;
 
 namespace ECS.Redesign.Test
 {
     public class Test
     {
         private Redesign.ECS _ESC;
+        private HeaterTest ThisHeaterTest;
+        private TempSensorTest ThisTempSensorTest;
+        private int ThisThreshold;
+
+        [SetUp]
         public void Setup()
         {
-            _ESC = new Redesign.ECS(28, new TempSensor_Test(), new Heater_Test());
+            ThisThreshold = 28;
+            ThisTempSensorTest = new TempSensorTest();
+            ThisHeaterTest = new HeaterTest();
+            _ESC = new Redesign.ECS(ThisThreshold, ThisTempSensorTest, ThisHeaterTest);
         }
 
-        public static void Main()
+        // Testing the ECS class
+        // Testing threshold
+        [TestCase(28)]
+        [TestCase(35)]
+        [TestCase(30)]
+        public void TestThreshold(int someThreshold)
         {
+            _ESC.SetThreshold(someThreshold);
+            Assert.That(_ESC.GetThreshold(), Is.EqualTo(someThreshold).Within(0.05));
         }
 
-        public class TempSensor_Test : Redesign.TempSensor
+        // Testing regulate
+        [TestCase(25, 30, true)]
+        [TestCase(35, 30, false)]
+        [TestCase(30, 30, false)]
+        public void TestRegulate(int testTemp, int testThreshold, bool testIsHeaterOn)
         {
-            private Random gen = new Random();
+            ThisTempSensorTest.Temp = testTemp;
+            _ESC.SetThreshold(testThreshold);
+            _ESC.Regulate();
+            Assert.That(ThisHeaterTest.IsHeaterOn, Is.EqualTo(testIsHeaterOn));
+        }
 
+        // Testing GetCurTemp
+        [TestCase(10)]
+        [TestCase(30)]
+        [TestCase(37)]
+        public void TestGetCurTemp(int testTemp)
+        {
+            ThisTempSensorTest.Temp = testTemp;
+            Assert.That(_ESC.GetCurTemp(), Is.EqualTo(testTemp).Within(0.05));
+        }
+
+        // Testing GetCurTemp
+        [TestCase(ExpectedResult = true)]
+        [TestCase(ExpectedResult = true)]
+        [TestCase(ExpectedResult = true)]
+        public bool RunSelfTest()
+        {
+            bool result = _ESC.RunSelfTest();
+            return result;
+        }
+
+        public class TempSensorTest : Redesign.TempSensor
+        {
+            public int Temp { get; set; }
             public int GetTemp()
             {
-                return gen.Next(-5, 45);
+                return Temp;
             }
 
             public bool RunSelfTest()
@@ -34,16 +81,17 @@ namespace ECS.Redesign.Test
             }
         }
 
-        public class Heater_Test : Redesign.Heater
+        public class HeaterTest : Redesign.Heater
         {
+            public bool IsHeaterOn;
             public void TurnOn()
             {
-                System.Console.WriteLine("Heater is on");
+                IsHeaterOn = true;
             }
 
             public void TurnOff()
             {
-                System.Console.WriteLine("Heater is off");
+                IsHeaterOn = false;
             }
 
             public bool RunSelfTest()

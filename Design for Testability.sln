@@ -7,9 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECS.Legacy", "ECS.Legacy\EC
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B5CABD59-540F-4FA8-B8A3-17B419172AE8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ESC.Redesign", "ESC.Redesign\ESC.Redesign.csproj", "{C0C399DA-E02D-469E-AD1F-CACE2F06CEFF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECS.Redesign", "ESC.Redesign\ECS.Redesign.csproj", "{C0C399DA-E02D-469E-AD1F-CACE2F06CEFF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ESC.Redesign.Test", "ESC.Redesign.Test\ESC.Redesign.Test.csproj", "{4A084B7E-8EB9-4F2A-AC62-4B2FAD203576}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECS.Redesign.Test", "ESC.Redesign.Test\ECS.Redesign.Test.csproj", "{4A084B7E-8EB9-4F2A-AC62-4B2FAD203576}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -21,7 +21,6 @@
                 _heater.TurnOn();
             else
                 _heater.TurnOff();
-
         }
 
         public void SetThreshold(int thr)
