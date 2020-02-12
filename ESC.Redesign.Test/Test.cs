@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ECS.Redesign;
+﻿using ECS.Redesign;
 using NUnit.Framework;
 
-namespace ECS.Redesign.Test
+namespace ESC.Redesign.Test
 {
     public class Test
     {
-        private Redesign.ECS _ESC;
+        private ECS.Redesign.ECS _ESC;
         private HeaterTest ThisHeaterTest;
         private TempSensorTest ThisTempSensorTest;
         private int ThisThreshold;
@@ -21,7 +16,7 @@ namespace ECS.Redesign.Test
             ThisThreshold = 28;
             ThisTempSensorTest = new TempSensorTest();
             ThisHeaterTest = new HeaterTest();
-            _ESC = new Redesign.ECS(ThisThreshold, ThisTempSensorTest, ThisHeaterTest);
+            _ESC = new ECS.Redesign.ECS(ThisThreshold, ThisTempSensorTest, ThisHeaterTest);
         }
 
         // Testing the ECS class
@@ -67,7 +62,7 @@ namespace ECS.Redesign.Test
             return result;
         }
 
-        public class TempSensorTest : Redesign.TempSensor
+        public class TempSensorTest : TempSensor
         {
             public int Temp { get; set; }
             public int GetTemp()
@@ -81,7 +76,7 @@ namespace ECS.Redesign.Test
             }
         }
 
-        public class HeaterTest : Redesign.Heater
+        public class HeaterTest : Heater
         {
             public bool IsHeaterOn;
             public void TurnOn()

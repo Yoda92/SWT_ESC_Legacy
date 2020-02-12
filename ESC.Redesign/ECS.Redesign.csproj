@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{C0C399DA-E02D-469E-AD1F-CACE2F06CEFF}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>ESC.Redesign</RootNamespace>
-    <AssemblyName>ESC.Redesign</AssemblyName>
+    <RootNamespace>ECS.Redesign</RootNamespace>
+    <AssemblyName>ECS.Redesign</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
